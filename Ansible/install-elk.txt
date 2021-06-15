@@ -1,0 +1,52 @@
+ 1 ---
+ 2 - name: Configure Elk VM with Docker
+ 3   hosts: elk
+ 4   remote_user: azureuser
+ 5   become: true
+ 6   tasks:
+ 7     # Use apt module
+ 8     - name: Install docker.io
+ 9       apt:
+10         update_cache: yes
+11         name: docker.io
+12         state: present
+13
+14       # Use apt module
+15     - name: Install pip3
+16       apt:
+17         force_apt_get: yes
+18         name: python3-pip
+19         state: present
+20
+21       # Use pip module
+22     - name: Install Docker python module
+23       pip:
+24         name: docker
+25         state: present
+26
+27       # Use sysctl module
+28     - name: Use more memory
+29       sysctl:
+30         name: vm.max_map_count
+31         value: "262144"
+32         state: present
+33         reload: yes
+34
+35       # Use docker_container module
+36     - name: download and launch a docker elk container
+37       docker_container:
+38         name: elk
+39         image: sebp/elk:761
+40         state: started
+41         restart_policy: always
+42         published_ports:
+43           - 5601:5601
+44           - 9200:9200
+45           - 5044:5044
+46
+47       # Use systemd module
+48     - name: Enable service docker on boot
+49       systemd:
+50         name: docker
+51         enabled: yes
+52
