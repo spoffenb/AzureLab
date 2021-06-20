@@ -8,7 +8,7 @@ AzureLab/Diagrams/AzureDiagram.png
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the Ansible files may be used to install only certain pieces of it, such as Filebeat.
 
-  - AzureLab/Ansible/install-elk.txt
+![alt text](https://github.com/AzureLab/Ansible/install-elk.txt.png "")
 
 This document contains the following details:
 - Description of the Topology
